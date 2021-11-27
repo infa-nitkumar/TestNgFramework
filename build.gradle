@@ -6,10 +6,7 @@
  * User Manual available at https://docs.gradle.org/6.6.1/userguide/java_library_plugin.html
  */
 
-plugins {
-    // Apply the java-library plugin to add support for Java Library
-    id 'java-library'
-}
+apply plugin : "java"
 
 repositories {
     // Use jcenter for resolving dependencies.
@@ -29,4 +26,11 @@ implementation 'com.googlecode.json-simple:json-simple:1.1.1'
 implementation 'io.github.bonigarcia:webdrivermanager:5.0.3'
 implementation "log4j:log4j:1.2.17"
 implementation "org.apache.poi:poi-ooxml:3.9"
+}
+test {
+
+        useTestNG() { //Tells Gradle to use TestNG
+        useDefaultListeners = false // Tells TestNG to execute its default reporting structure
+        suites 'testng.xml' //location of our suite.xml
+    }
 }
